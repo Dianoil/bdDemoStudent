@@ -1,0 +1,163 @@
+﻿<Window x:Class="bdDemoStudent.View.WinProfil"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:bdDemoStudent.View"
+        mc:Ignorable="d"
+        Loaded="LoadProf"
+        SizeToContent="WidthAndHeight" ResizeMode="CanResize" 
+        Title="Профиль" Height="auto" Width="auto" Style="{StaticResource winnn}">
+    <Grid Loaded="UserLoad">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <GroupBox x:Name="GrBox" Margin="20">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
+                    <Button Content="Профиль пользователя" FontSize="14" Click="eee">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Image Source="/Jpg/brngomes.png" Height="46"/>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </GroupBox.Header>
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <GroupBox Margin="10">
+                    <GroupBox.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Профиль пользователя" FontSize="14"/>
+                        </StackPanel>
+                    </GroupBox.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="83*"/>
+                            <ColumnDefinition Width="248*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="5.8"/>
+                            <RowDefinition Height="11"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.ColumnSpan="2" Margin="0,0,0.2,0.2">
+                            <Label Content="Логин/Email: " HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            <xctk:WatermarkTextBox x:Name="Logg" Style="{StaticResource textBoxXctk}"  Text="{Binding Path=Email, Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged}"
+                                                   HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Grid.Column="1"/>
+                            
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.ColumnSpan="2" Margin="0,31,0.2,0" Grid.RowSpan="3">
+                            <Label Content="Пароль : " VerticalAlignment="Center"/>
+                            <xctk:WatermarkTextBox x:Name="Pass"  Text="{Binding Path=Password, Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource textBoxXctk}"
+                                                   HorizontalAlignment="Left" VerticalAlignment="Center" Width="200"/>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="Колледж" Margin="10" Grid.Row="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Группа : " HorizontalAlignment="Right"/>
+                        <xctk:WatermarkComboBox x:Name="ComboGroup" Style="{StaticResource Combowat}"  SelectionChanged="Conm" FontSize="16" HorizontalAlignment="Left" SelectedValuePath ="Id" DisplayMemberPath="Name" Grid.Column="1" SelectedValue="{Binding Path=IdGroup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0"/>
+                        <Label Content="Специальность : " HorizontalAlignment="Right" Grid.Row="1"/>
+                        <xctk:WatermarkTextBox x:Name="Spec" Style="{StaticResource textBoxXctk}" IsReadOnly="True" Text="{Binding Path=Groups.Comment}" HorizontalAlignment="Left" Width="200" Grid.Column="1" Grid.Row="1"/>
+                        <Label Content="Дата поступления : " HorizontalAlignment="Right" Grid.Row="2"/>
+                        <xctk:WatermarkComboBox x:Name="GodEdit" Style="{StaticResource Combowat}" FontSize="16" HorizontalAlignment="Left" SelectedValue="{Binding Path=DateOfReceipt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1"/>
+                    </Grid>
+                </GroupBox>
+                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                    <GroupBox Header="Файл" VerticalAlignment="Bottom" Margin="10">
+                        <Border BorderBrush="#F4F4F4" BorderThickness="1">
+                            <StackPanel Orientation="Horizontal">
+                                <xctk:WatermarkTextBox x:Name="NameFiles" Style="{StaticResource textBoxXctk}" Text="{Binding Path=NameFiles, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="160" IsReadOnly="True"/>
+                                <Button Content="Выбор" Width="40" Click="AvatarUser"/>
+                            </StackPanel>
+                        </Border>
+                    </GroupBox>
+                    <Button HorizontalAlignment="Right" Template="{StaticResource ButtonJPG}" Click="AvatarUser" Margin="30,-50,0,0">
+                        <Grid>
+                            <Rectangle Width="140" Height="150" RadiusX="30" RadiusY="30" Grid.Column="1">
+                                <Rectangle.Fill>
+                                    <ImageBrush x:Name="ImageUser"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
+                    </Button>
+                </StackPanel>
+                <GroupBox Header="Личные данные" Margin="10" Grid.Column="1" Grid.Row="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Label Content="Фамилия : " HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            <xctk:WatermarkTextBox Text="{Binding Path=Name1,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource textBoxXctk}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Grid.Column="1"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1">
+                            <Label Content="Имя : " HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            <xctk:WatermarkTextBox Text="{Binding Path=Name2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource textBoxXctk}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Grid.Column="1"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2">
+                            <Label Content="Отчество : " HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            <xctk:WatermarkTextBox Text="{Binding Path=Name3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource textBoxXctk}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Grid.Column="1"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="3">
+                            <Label Content="Тел. Моб : " HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            <xctk:MaskedTextBox FontSize="16" Style="{StaticResource MaskeText}" Mask="+7(000)000-00-00" VerticalAlignment="Center" Text="{Binding Path=MobilPhone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Label Content="Тел. дом : " HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            <xctk:MaskedTextBox FontSize="16" Style="{StaticResource MaskeText}" Mask="+7(000)000-00-00" VerticalAlignment="Center" Text="{Binding Path=HomePhone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="4">
+                            <Label Content="Дата рож.:"  HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            <DatePicker x:Name="DateR" Style="{StaticResource Pictext}" SelectedDateFormat="Short" SelectedDate="{Binding Path=YearOfBirth, Mode=TwoWay}" FontSize="16" Height="26" Margin="0,0,0,-0.4" VerticalAlignment="Top"/>
+                            <Label Content="Пол :" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <xctk:WatermarkComboBox x:Name="ComboPol" Style="{StaticResource Combowat}" FontSize="16" VerticalAlignment="Center"
+                                                    SelectedValuePath="Id" DisplayMemberPath="Name"
+                                                    SelectedValue="{Binding Path=IdGender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,20,0"/>
+                            <Label Content="Гражданство :" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <xctk:WatermarkComboBox x:Name="ComboCount" Style="{StaticResource Combowat}" FontSize="16" VerticalAlignment="Center"
+                                                    SelectedValuePath="Id" DisplayMemberPath="Name"
+                                                    SelectedValue="{Binding Path=IdCountry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,20,0"/>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+                <Grid Grid.Row="2" Grid.Column="1" Margin="0,10,0,0" HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </Grid>
+        </GroupBox>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" Margin="10">
+            <Button Content=" Сохранить " Width="90" Template="{StaticResource myButtonMin}" Margin="20,0,20,0" Click="Save"/>
+            <Button Content=" Выход " Template="{StaticResource myButtonMin}" Grid.Column="1" Width="60" Click="End"/>
+        </StackPanel>
+    </Grid>
+</Window>

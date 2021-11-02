@@ -1,0 +1,34 @@
+﻿<Window x:Class="bdDemoStudent.View.WinActiv"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:bdDemoStudent.View"
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
+        Loaded="Action"
+        Title="WinActiv" Height="auto" Width="450">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Style="{StaticResource butonStandart}" Content="Отчистить" Click="Reset" HorizontalAlignment="Right" Margin="5"/>
+        <DataGrid x:Name="GriAction" AutoGenerateColumns="False" Background="{StaticResource brush_win}" Grid.Row="1"
+                  HorizontalGridLinesBrush ="Gray"
+                  RowBackground="LightGray"
+                  AlternatingRowBackground="White"
+                  IsReadOnly="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Login/Email" Binding="{Binding Path=Users.Email, Mode=TwoWay}"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=Users.Name1, Mode=TwoWay}"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=Users.Name2, Mode=TwoWay}"/>
+                <DataGridTextColumn Header="Вход Дата-Время" Binding="{Binding Path=LoginTime, Mode=TwoWay,
+                    StringFormat={}{0:dd.MM.yyyy - HH:mm:ss}}"/>
+                <DataGridTextColumn Header="Выход Дата-Время" Binding="{Binding Path=LogoutTime, Mode=TwoWay,
+                    StringFormat={}{0:dd.MM.yyyy - HH:mm:ss}}"/>
+                <DataGridTextColumn Header="Описание" Binding="{Binding Path=Comment, Mode=TwoWay}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
